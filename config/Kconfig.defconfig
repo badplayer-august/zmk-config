@@ -61,17 +61,17 @@ config ZMK_DISPLAY
 # endif # ZMK_DISPLAY
 
 # Remove or disable custom widgets if they are related to display
-menuconfig CUSTOM_WIDGET_BATTERY_STATUS
-    bool "custom battery status widget"
-
-menuconfig CUSTOM_WIDGET_OUTPUT_STATUS
-    bool "custom output status widget"
-
-menuconfig CUSTOM_WIDGET_LAYER_STATUS
-    bool "custom layer status widget"
-
-menuconfig CUSTOM_WIDGET_PERIPHERAL_STATUS
-    bool "custom peripheral status widget"
+# menuconfig CUSTOM_WIDGET_BATTERY_STATUS
+#     bool "custom battery status widget"
+#
+# menuconfig CUSTOM_WIDGET_OUTPUT_STATUS
+#     bool "custom output status widget"
+#
+# menuconfig CUSTOM_WIDGET_LAYER_STATUS
+#     bool "custom layer status widget"
+#
+# menuconfig CUSTOM_WIDGET_PERIPHERAL_STATUS
+#     bool "custom peripheral status widget"
 
 endif # BOARD_CORNEISH_ZEN_LEFT || BOARD_CORNEISH_ZEN_RIGHT
 
