@@ -71,7 +71,7 @@
 
 ### Symbols / Punctuation
 
-Frequence and Usage:
+Frequency and Usage:
 1. **'"`~**: string
 2. **()**: function, tuple
 3. **[]**: array
