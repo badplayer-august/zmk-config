@@ -19,13 +19,13 @@
 
 | Name                    | Freq     | Seq                | Mod                | Behaviors          | Num of Keys   |
 |-------------------------|----------|--------------------|--------------------|--------------------|---------------|
-| Letters                 | high     | :check_mark:       | :check_mark:       | Default Layer      | 26            |
-| Control & Whitespace    | high     |                    | :check_mark:       | Default Layer      | 6 (~INS~)     |
-| Numbers                 | high     | :check_mark:       | :check_mark:       | To Layer           | 10            |
+| Letters                 | high     | :white_check_mark: | :white_check_mark: | Default Layer      | 26            |
+| Control & Whitespace    | high     |                    | :white_check_mark: | Default Layer      | 6 (~INS~)     |
+| Numbers                 | high     | :white_check_mark: | :white_check_mark: | To Layer           | 10            |
 | Modifiers               | high     |                    |                    | Mod-Tap            | 8             |
-| Symbols / Punctuation   | medium   |                    | :check_mark:       | Momentary Layer    | 24 (~;,./~)   |
-| Navigation              | medium   | :check_mark:       |                    | Momentary Layer    | 8             |
-| Miscellaneous           | low      |                    | :check_mark:       | Momentary Layer    | 1 (PSCRN)     |
+| Symbols / Punctuation   | medium   |                    | :white_check_mark: | Momentary Layer    | 24 (~;,./~)   |
+| Navigation              | medium   | :white_check_mark: |                    | Momentary Layer    | 8             |
+| Miscellaneous           | low      |                    | :white_check_mark: | Momentary Layer    | 1 (PSCRN)     |
 | F Keys                  | low      |                    |                    | Momentary Layer    | 12            |
 | Key Repeat              | low      |                    |                    | Momentary Layer    | 1             |
 | Mouse Emulation         | low      |                    |                    | Momentary Layer    | 5             |
