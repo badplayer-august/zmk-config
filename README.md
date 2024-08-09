@@ -62,8 +62,8 @@
 
 ```
 -------------------------------------     -------------------------------------
-|     |     |     |     |     |     |     |  +  |  7  |  8  |  9  |  %  |     |     
-|     |     |     |     |     |     |     |  -  |  4  |  5  |  6  |  *  |     |     
+|     |     |     |     |     |     |     |  -  |  7  |  8  |  9  |  %  |     |     
+|     |     |     |     |     |     |     |  +  |  4  |  5  |  6  |  *  |     |     
 |     |     |     |     |     |     |     |  0  |  1  |  2  |  3  |  /  |     |     
 ------------------|     |     |     |     |     |     |     |------------------
                   -------------------     -------------------
@@ -88,8 +88,8 @@ Frequency and Usage:
 
 ```
 -------------------------------------     -------------------------------------
-|     |     |  (  |  )  |  `  |  ~  |     |  +  |  &  |  |  |  \  |  %  |     |
-|     |     |  [  |  ]  |  "  |  '  |     |  -  |  !  |  =  |  #  |  *  |     |
+|     |     |  (  |  )  |  `  |  ~  |     |  -  |  &  |  |  |  \  |  %  |     |
+|     |     |  [  |  ]  |  "  |  '  |     |  +  |  !  |  =  |  #  |  *  |     |
 |     |     |  {  |  }  |  _  |  @  |     |  ^  |  $  |     |     |     |     |     
 ------------------|     |     |     |     |     |     |     |------------------
                   -------------------     -------------------
@@ -133,9 +133,13 @@ Frequency and Usage:
                   -------------------     -------------------
 ```
 
-# Base Config
+# References
 
-[Default](https://github.com/a741725193/zmk-config-zen-2/actions/runs/9887163274/job/27308328547)
+[Basic config: a741725193](https://github.com/a741725193/zmk-config-zen-2/actions/runs/9887163274/job/27308328547)
 
-[Turn off display](https://github.com/Lucas1382/zmk-config-zen-2/tree/patch-1)
+[Turn off display: Lucas1382](https://github.com/Lucas1382/zmk-config-zen-2/tree/patch-1)
+
+[Advenced setup: urob](https://github.com/urob/zmk-config)
+
+[Advenced setup: rafaelromao](https://github.com/rafaelromao/keyboards)
 
