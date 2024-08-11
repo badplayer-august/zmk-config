@@ -78,6 +78,7 @@ ZMK_HOLD_TAP(
 ZMK_MACRO_ONE_PARAM(
     bt_con,
     bindings= 
+        <&macro_param_1to1>,
         <&macro_param_1to2>,
         <&bt_con_ MACRO_PLACEHOLDER MACRO_PLACEHOLDER>;
 )
