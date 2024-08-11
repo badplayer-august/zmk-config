@@ -52,16 +52,20 @@ ZMK_HOLD_TAP(hmr,
 ZMK_MACRO_ONE_PARAM(
     bt_clr,
     bindings= 
+        <&kp C &kp L &kp R &kp ENTER>,
         <&macro_param_1to2>,
         <&bt BT_SEL MACRO_PLACEHOLDER>,
-        <&bt BT_CLR>;
+        <&bt BT_CLR>,
+        <&kp F &kp I &kp N &kp ENTER>;
 )
 
 ZMK_MACRO_ONE_PARAM(
     bt_sel,
     bindings= 
+        <&kp S &kp E &kp L &kp ENTER>,
         <&macro_param_1to2>,
-        <&bt BT_SEL MACRO_PLACEHOLDER>;
+        <&bt BT_SEL MACRO_PLACEHOLDER>,
+        <&kp F &kp I &kp N &kp ENTER>;
 )
 
 ZMK_HOLD_TAP(
@@ -74,7 +78,7 @@ ZMK_HOLD_TAP(
 ZMK_MACRO_ONE_PARAM(
     bt_con,
     bindings= 
-        <&macro_param_1to1>,
+        <&macro_param_1to2>,
         <&bt_con_ MACRO_PLACEHOLDER MACRO_PLACEHOLDER>;
 )
 
