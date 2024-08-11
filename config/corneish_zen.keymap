@@ -34,6 +34,7 @@
 #define NAV 3
 #define CTL 4
 
+#define ___ &trans
 #define POWER(act) &ext_power act
 #define RGB(act) &rgb_ug act
 
