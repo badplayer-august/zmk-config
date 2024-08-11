@@ -81,7 +81,7 @@ ZMK_HOLD_TAP(
     bindings = <&bt_clr>, <&bt_sel>;
 )
 
-ZMK_CONDITIONAL_LAYER(nav, NUM, SYM, NAV)
+ZMK_CONDITIONAL_LAYER(nav, NUM SYM, NAV)
 
 ZMK_LAYER(default_layer,
      // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
