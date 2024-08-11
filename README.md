@@ -22,7 +22,7 @@
 | Letters                 | high     | :white_check_mark: | :white_check_mark: | Default Layer      | 26            |
 | Control & Whitespace    | high     |                    | :white_check_mark: | Default Layer      | 6 (~INS~)     |
 | Numbers                 | high     | :white_check_mark: | :white_check_mark: | To Layer           | 10            |
-| Modifiers               | high     |                    |                    | Mod-Tap            | 8             |
+| Modifiers               | high     |                    | :white_check_mark: | Mod-Tap            | 8             |
 | Symbols / Punctuation   | medium   |                    | :white_check_mark: | Momentary Layer    | 24 (~;,./~)   |
 | Navigation              | medium   | :white_check_mark: |                    | Momentary Layer    | 8             |
 | Miscellaneous           | low      |                    | :white_check_mark: | Momentary Layer    | 1 (PSCRN)     |
