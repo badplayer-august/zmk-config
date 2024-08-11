@@ -68,7 +68,7 @@ ZMK_HOLD_TAP(
     bt_con_,
     flavor = "tap-preferred";
     tapping-term-ms = <1000>;
-    bindings = <&bt_sel>, <&bt_clr>;
+    bindings = <&bt_clr>, <&bt_sel>;
 )
 
 ZMK_MACRO_ONE_PARAM(
