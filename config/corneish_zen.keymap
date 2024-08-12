@@ -82,16 +82,11 @@ ZMK_HOLD_TAP(bt_con,
     bindings = <&bt_clr>, <&bt_sel>;
 )
 
-ZMK_HOLD_TAP(num_ctl,
+ZMK_HOLD_TAP(msl,
     tapping-term-ms = <200>;
-    bindings = <&mo CTL>, <&sl NUM>;
+    bindings = <&mo>, <&sl>;
 )
 
-ZMK_HOLD_TAP(sym_ctl,
-    tapping-term-ms = <200>;
-    bindings = <&mo CTL>, <&sl SYM>;
-)
- 
 ZMK_MOD_MORPH(back_del,
     bindings = <&kp BACKSPACE>, <&kp DEL>;
     mods = <(MOD_LSFT|MOD_RSFT)>;
@@ -105,7 +100,7 @@ ZMK_LAYER(default_layer,
      // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
           ___             &kp Q           &kp W           &kp E           &kp R           &kp T               &kp Y           &kp U           &kp I           &kp O           &kp P           ___
      // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-          &num_ctl        &hml LALT A     &hml LGUI S     &hml LSHFT D    &hml LCTRL F    &kp G               &kp H           &hmr RCTRL J    &hmr RSHFT K    &hmr RGUI L     &hmr RALT SEMI  &sym_ctl
+          &msl CTL NUM    &hml LALT A     &hml LGUI S     &hml LSHFT D    &hml LCTRL F    &kp G               &kp H           &hmr RCTRL J    &hmr RSHFT K    &hmr RGUI L     &hmr RALT SEMI  &msl CTL SYM
      // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
           &sk LSHFT       &kp Z           &kp X           &kp C           &kp V           &kp B               &kp N           &kp M           &kp COMMA       &kp DOT         &kp SLASH       &caps_word
      // ╰───────────────────────────────────────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────────────────────────────────────╯
