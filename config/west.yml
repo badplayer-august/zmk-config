@@ -13,6 +13,7 @@ manifest:
       remote: urob
       revision: main
     - name: zmk-auto-layer
+      remote: urob
       revision: main
       path: modules/auto-layer
   self:
