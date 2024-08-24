@@ -29,6 +29,7 @@
 #define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5  // right-hand keys
 #define THUMBS LH2 LH1 LH0 RH0 RH1 RH2
 
+// layers
 #define DEF 0
 #define NUM 1
 #define SYM 2
@@ -43,6 +44,24 @@
 #define RGB(act) &rgb_ug act
 
 ZMK_APPLY_MATRIX_TRANSFORM(default_transform)
+
+// global setting
+&sk {  // sticky-key config
+    release-after-ms = <900>;  // release after 0.9s
+    quick-release;             // no double capitalization when rolling keys
+};
+
+&sl {  // sticky-layer config
+    release-after-ms = <900>;  // release after 0.9s
+    quick-release;             // no double capitalization when rolling keys
+    ignore-modifiers;
+};
+
+&lt {  // layer-tap config
+    flavor = "balanced";
+    tapping-term-ms = <200>;
+    quick-tap-ms = <175>;
+};
 
 // timeless home mod
 ZMK_HOLD_TAP(hml,
@@ -68,21 +87,21 @@ ZMK_HOLD_TAP(hmr,
 // smart bluetooth
 #define BT_CON(dev) &bt_con dev dev
 ZMK_MACRO_ONE_PARAM(bt_clr,
-    bindings= 
+    bindings=
         <&macro_param_1to2>,
         <&bt BT_SEL MACRO_PLACEHOLDER>,
         <&bt BT_CLR>;
 )
 
 ZMK_MACRO_ONE_PARAM(bt_sel,
-    bindings= 
+    bindings=
         <&macro_param_1to2>,
         <&bt BT_SEL MACRO_PLACEHOLDER>;
 )
 
 ZMK_HOLD_TAP(bt_con,
     flavor = "tap-preferred";
-    tapping-term-ms = <1000>;
+    tapping-term-ms = <1000>;           // hold 1 sec to clear device
     bindings = <&bt_clr>, <&bt_sel>;
 )
 
@@ -93,36 +112,50 @@ ZMK_HOLD_TAP(msl,
 )
 
 // num_word and caps_word
-ZMK_TAP_DANCE(num_dance,
+// tap sticky: symbol layer; double tap: num dance; hold: navigation layer
+ZMK_HOLD_TAP(rh2,
+    flavor = "balanced";
     tapping-term-ms = <200>;
-    bindings = <&num_word NUM>, <&sl NUM>;  // reverse this for sticky-num on single tap
+    quick-tap-ms = <175>;
+    bindings = <&mo>, <&inner_rh2>;
+)
+ZMK_TAP_DANCE(inner_rh2,
+    tapping-term-ms = <200>;
+    bindings = <&sl SYM>, <&num_word NUM>;  // reverse this for sticky-num on single tap
 )
 
-ZMK_TAP_DANCE(cap_dance,
+// tap sticky: sticky shift; double tap: cap dance; hold: navigation layer
+ZMK_HOLD_TAP(lh2,
+    flavor = "balanced";
     tapping-term-ms = <200>;
-    bindings = <&caps_word>, <&sk LSHFT>;  // reverse this for sticky-num on single tap
+    quick-tap-ms = <175>;
+    bindings = <&mo>, <&inner_lh2>;
+)
+ZMK_TAP_DANCE(inner_lh2,
+    tapping-term-ms = <200>;
+    bindings = <&sk LSHFT>, <&caps_word>;  // reverse this for sticky-num on single tap
 )
 
-// better backspace 
+// tap: backspace; shift tap: delete
 ZMK_MOD_MORPH(back_del,
     bindings = <&kp BACKSPACE>, <&kp DEL>;
     mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
 // combo
-ZMK_COMBO(esc, &kp ESC, LH0 RH0, ALL)
-ZMK_COMBO(to_def, &to DEF, LH2 RH2 LT5, ALL)
-ZMK_COMBO(to_gam, &to GAM, LH2 RH2 LB5, ALL)
+ZMK_COMBO(esc, &kp ESC, LH0 RH0, ALL, 50)
+ZMK_COMBO(to_def, &to DEF, LH2 RH2 LM5, ALL, 50)
+ZMK_COMBO(to_gam, &to GAM, LH2 RH2 LB5, ALL, 50)
 
 ZMK_LAYER(default_layer,
      // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-          ___             &kp Q           &kp W           &kp E           &kp R           &kp T               &kp Y           &kp U           &kp I           &kp O           &kp P           ___
+          &mo CTL         &kp Q           &kp W           &kp E           &kp R           &kp T               &kp Y           &kp U           &kp I           &kp O           &kp P           &mo CTL
      // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-          &lt CTL LSHFT   &hml LALT A     &hml LGUI S     &hml LSHFT D    &hml LCTRL F    &kp G               &kp H           &hmr RCTRL J    &hmr RSHFT K    &hmr RGUI L     &hmr RALT SEMI  &msl CTL SYM
+          &kp ESC         &hml LALT A     &hml LGUI S     &hml LSHFT D    &hml LCTRL F    &kp G               &kp H           &hmr RCTRL J    &hmr RSHFT K    &hmr RGUI L     &hmr RALT SEMI  &kp DEL
      // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-          &num_dance      &kp Z           &kp X           &kp C           &kp V           &kp B               &kp N           &kp M           &kp COMMA       &kp DOT         &kp SLASH       &cap_dance
+          ___             &kp Z           &kp X           &kp C           &kp V           &kp B               &kp N           &kp M           &kp COMMA       &kp DOT         &kp SLASH       ___
      // ╰───────────────────────────────────────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────────────────────────────────────╯
-                                                          &lt NAV ESC     &kp TAB         &lt NUM SPACE       &lt SYM ENTER   &back_del       &lt NAV DEL
+                                                          &lh2 NAV 0      &kp TAB         &lt NUM SPACE       &lt SYM ENTER   &back_del       &rh2 NAV 0
      //                                                 ╰───────────────┴───────────────┴───────────────╯   ╰───────────────┴───────────────┴───────────────╯
 )
 
@@ -130,7 +163,7 @@ ZMK_LAYER(num_layer,
      // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
           ___             ___             ___             ___             ___             ___                 &kp MINUS       &kp N7          &kp N8          &kp N9          &kp PERCENT     ___
      // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-          ___             &kp LALT        &kp LGUI        &kp LSHFT       &kp LCTRL       ___                 &kp PLUS        &kp N4          &kp N5          &kp N6          &kp ASTERISK    ___
+          ___             &kp LALT        &kp LGUI        &kp LSHFT       &kp LCTRL       ___                 &kp PLUS        &kp N4          &kp N5          &kp N6          &kp ASTERISK    &kp K_CANCEL
      // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
           ___             ___             ___             ___             ___             ___                 &kp N0          &kp N1          &kp N2          &kp N3          ___             ___
      // ╰───────────────────────────────────────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────────────────────────────────────╯
@@ -142,9 +175,9 @@ ZMK_LAYER(sym_layer,
      // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
           ___             ___             &kp LPAR        &kp RPAR        &kp GRAVE       &kp TILDE           &kp MINUS       &kp AMPERSAND   &kp PIPE        &kp BACKSLASH   &kp PERCENT     ___
      // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-          ___             ___             &kp LBKT        &kp RBKT        &kp DQT         &kp SQT             &kp PLUS        &kp EXCL        &kp EQUAL       &kp HASH        &kp ASTERISK    ___
+          ___             ___             &kp LBKT        &kp RBKT        &kp DQT         &kp SQT             &kp PLUS        &kp EXCL        &kp EQUAL       &kp HASH        &kp ASTERISK    &kp K_CANCEL
      // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-          ___             ___             &kp LBRC        &kp RBRC        &kp UNDER       &kp AT              &kp CARET       &kp DOLLAR      ___             ___             ___             ___
+          ___             ___             &kp LBRC        &kp RBRC        &kp UNDER       &kp AT              &kp CARET       &kp DOLLAR      &kp COMMA       &kp DOT         ___             ___
      // ╰───────────────────────────────────────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────────────────────────────────────╯
                                                           ___             ___             ___                 ___             ___             ___
      //                                                 ╰───────────────┴───────────────┴───────────────╯   ╰───────────────┴───────────────┴───────────────╯
@@ -164,11 +197,11 @@ ZMK_LAYER(nav_layer,
 
 ZMK_LAYER(ctl_layer,
      // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-          &bootloader     ___             ___             ___             ___             ___                 ___             ___             ___             ___             ___             &bootloader
+          ___             ___             ___             ___             ___             ___                 ___             ___             ___             ___             ___             ___
      // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-          ___             BT_CON(0)       BT_CON(1)       BT_CON(2)       BT_CON(3)       BT_CON(4)           RGB(RGB_HUI)    RGB(RGB_SAI)    RGB(RGB_BRI)    RGB(RGB_SPI)    RGB(RGB_EFF)    ___
+          &bootloader     BT_CON(0)       BT_CON(1)       BT_CON(2)       BT_CON(3)       BT_CON(4)           RGB(RGB_HUI)    RGB(RGB_SAI)    RGB(RGB_BRI)    RGB(RGB_SPI)    RGB(RGB_EFF)    &bootloader
      // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-          &sys_reset      ___             POWER(EP_ON)    POWER(EP_OFF)   &out OUT_USB    &out OUT_BLE        RGB(RGB_HUD)    RGB(RGB_SAD)    RGB(RGB_BRD)    RGB(RGB_SPD)    ___             &sys_reset
+          &sys_reset      ___             RGB(RGB_ON)     POWER(EP_OFF)   &out OUT_USB    &out OUT_BLE        RGB(RGB_HUD)    RGB(RGB_SAD)    RGB(RGB_BRD)    RGB(RGB_SPD)    ___             &sys_reset
      // ╰───────────────────────────────────────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────────────────────────────────────╯
                                                           ___             ___             ___                 ___             ___             ___
      //                                                 ╰───────────────┴───────────────┴───────────────╯   ╰───────────────┴───────────────┴───────────────╯

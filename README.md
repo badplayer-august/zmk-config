@@ -90,7 +90,7 @@ Frequency and Usage:
 -------------------------------------     -------------------------------------
 |     |     |  (  |  )  |  `  |  ~  |     |  -  |  &  |  |  |  \  |  %  |     |
 |     |     |  [  |  ]  |  "  |  '  |     |  +  |  !  |  =  |  #  |  *  |     |
-|     |     |  {  |  }  |  _  |  @  |     |  ^  |  $  |     |     |     |     |
+|     |     |  {  |  }  |  _  |  @  |     |  ^  |  $  |  ,  |  .  |     |     |
 ------------------|     |     |     |     |     |     |     |------------------
                   -------------------     -------------------
 ```
@@ -122,6 +122,14 @@ Frequency and Usage:
                   -------------------     -------------------
 ```
 
+# Current feadback
+
+- Holding keys for activating layer is tiresome and get clumsy in certain situation. Need to find a better typing flow.
+    - e.g. arr[0][1][1]
+- Need dedicated key for win or shift keys.
+- Need dedicated key for deactivate layer.
+- Tap dance keys shouldn't place on pinky finger's keys.
+
 # Template
 
 ```
@@ -143,3 +151,4 @@ Frequency and Usage:
 
 [Advenced setup: rafaelromao](https://github.com/rafaelromao/keyboards)
 
+[ZMK config with dongle](https://github.com/aroum/zmk-enki42-dongle)
