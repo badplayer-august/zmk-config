@@ -116,11 +116,10 @@ ZMK_HOLD_TAP(msl,
 ZMK_HOLD_TAP(rh2,
     flavor = "balanced";
     tapping-term-ms = <200>;
-    quick-tap-ms = <175>;
     bindings = <&mo>, <&inner_rh2>;
 )
 ZMK_TAP_DANCE(inner_rh2,
-    tapping-term-ms = <200>;
+    tapping-term-ms = <280>;
     bindings = <&sl SYM>, <&num_word NUM>;  // reverse this for sticky-num on single tap
 )
 
@@ -128,12 +127,15 @@ ZMK_TAP_DANCE(inner_rh2,
 ZMK_HOLD_TAP(lh2,
     flavor = "balanced";
     tapping-term-ms = <200>;
-    quick-tap-ms = <175>;
     bindings = <&mo>, <&inner_lh2>;
 )
 ZMK_TAP_DANCE(inner_lh2,
-    tapping-term-ms = <200>;
+    tapping-term-ms = <280>;
     bindings = <&sk LSHFT>, <&caps_word>;  // reverse this for sticky-num on single tap
+)
+ZMK_MOD_MORPH(back_del, // cancel cap dance
+    bindings = <&kp DEL>, <&kp K_CANCEL>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
 )
 
 // tap: backspace; shift tap: delete
@@ -143,9 +145,9 @@ ZMK_MOD_MORPH(back_del,
 )
 
 // combo
-ZMK_COMBO(esc, &kp ESC, LH0 RH0, ALL, 50)
-ZMK_COMBO(to_def, &to DEF, LH2 RH2 LM5, ALL, 50)
-ZMK_COMBO(to_gam, &to GAM, LH2 RH2 LB5, ALL, 50)
+ZMK_COMBO(esc, &kp ESC, LH0 RH0, ALL, 100)
+ZMK_COMBO(to_def, &to DEF, LH2 RH2 LM5, ALL, 100)
+ZMK_COMBO(to_gam, &to GAM, LH2 RH2 LB5, ALL, 100)
 
 ZMK_LAYER(default_layer,
      // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
