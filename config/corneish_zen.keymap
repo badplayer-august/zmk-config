@@ -120,7 +120,7 @@ ZMK_HOLD_TAP(rh2,
 )
 ZMK_TAP_DANCE(inner_rh2,
     tapping-term-ms = <280>;
-    bindings = <&sl SYM>, <&num_word NUM>;  // reverse this for sticky-num on single tap
+    bindings = <&sl NUM>, <&num_word NUM>;  // reverse this for sticky-num on single tap
 )
 
 // tap sticky: sticky shift; double tap: cap dance; hold: navigation layer
@@ -145,7 +145,7 @@ ZMK_MOD_MORPH(back_del,
 )
 
 // combo
-ZMK_COMBO(esc, &kp ESC, LH0 RH0, ALL, 100)
+ZMK_COMBO(esc, &kp ESC, LH0 RH0, DEF NUM SYM, 100)
 ZMK_COMBO(to_def, &to DEF, LH2 RH2 LM5, ALL, 100)
 ZMK_COMBO(to_gam, &to GAM, LH2 RH2 LB5, ALL, 100)
 
@@ -153,11 +153,11 @@ ZMK_LAYER(default_layer,
      // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
           &mo CTL         &kp Q           &kp W           &kp E           &kp R           &kp T               &kp Y           &kp U           &kp I           &kp O           &kp P           &mo CTL
      // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-          &kp ESC         &hml LALT A     &hml LGUI S     &hml LSHFT D    &hml LCTRL F    &kp G               &kp H           &hmr RCTRL J    &hmr RSHFT K    &hmr RGUI L     &hmr RALT SEMI  &kp DEL
+          &kp ESC         &hml LALT A     &hml LGUI S     &hml LSHFT D    &hml LCTRL F    &kp G               &kp H           &hmr RCTRL J    &hmr RSHFT K    &hmr RGUI L     &hmr RALT SEMI  &sl SYM
      // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
           &kp K_CANCEL    &kp Z           &kp X           &kp C           &kp V           &kp B               &kp N           &kp M           &kp COMMA       &kp DOT         &kp SLASH       &kp K_CANCEL
      // ╰───────────────────────────────────────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────────────────────────────────────╯
-                                                          &lh2 NAV 0      &kp TAB         &lt NUM SPACE       &lt SYM ENTER   &kp BACKSPACE   &rh2 NAV 0
+                                                          &lh2 NAV 0      &kp TAB         &lt NUM SPACE       &lt SYM ENTER   &back_del       &rh2 NAV 0
      //                                                 ╰───────────────┴───────────────┴───────────────╯   ╰───────────────┴───────────────┴───────────────╯
 )
 
