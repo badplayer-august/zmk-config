@@ -2,3 +2,6 @@
 	path = submodules/zmk-helpers
 	url = https://github.com/urob/zmk-helpers
 	branch = v2
+[submodule "submodules/zmk-auto-layer"]
+	path = submodules/zmk-auto-layer
+	url = https://github.com/urob/zmk-auto-layer
