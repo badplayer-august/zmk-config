@@ -1,3 +1,10 @@
+# Build
+
+```bash
+west build -d build/left -b nice_nano_v2 -- -DSHIELD=corne_left -DZMK_EXTRA_MODULES="/workspaces/zmk-config/submodules/zmk-helpers;/workspaces/zmk-config/submodules/zmk-auto-layer;/workspaces/zmk-config" -DZMK_CONFIG=/workspaces/zmk-config/config   
+
+west build -d build/right -b nice_nano_v2 -- -DSHIELD=corne_right -DZMK_EXTRA_MODULES="/workspaces/zmk-config/submodules/zmk-helpers;/workspaces/zmk-config/submodules/zmk-auto-layer;/workspaces/zmk-config" -DZMK_CONFIG=/workspaces/zmk-config/config   
+```
 # Key Mapping
 
 ## Impact of Neutral Position
@@ -10,7 +17,7 @@
 -------------------------------------     -------------------------------------
 |  3  |  2  |  1  |  1  |  2  |  3  |     |  3  |  2  |  1  |  1  |  2  |  3  |
 |  1  |  1  |  1  |  1  |  1  |  1  |     |  1  |  1  |  1  |  1  |  1  |  1  |
-|  3  |  1  |  3  |  3  |  2  |  3  |     |  3  |  2  |  3  |  3  |  1  |  3  |
+|  1  |  1  |  3  |  3  |  2  |  3  |     |  3  |  2  |  3  |  3  |  1  |  1  |
 ------------------|  1  |  1  |  1  |     |  1  |  1  |  1  |------------------
                   -------------------     -------------------
 ```
@@ -64,7 +71,7 @@
 -------------------------------------     -------------------------------------
 |     |     |     |     |     |     |     |  -  |  7  |  8  |  9  |  %  |     |
 |     |     |     |     |     |     |     |  +  |  4  |  5  |  6  |  *  |     |
-|     |     |     |     |     |     |     |  0  |  1  |  2  |  3  |     |     |
+|     |     |     |     |     |     |     |  0  |  1  |  2  |  3  |  /  |     |
 ------------------|     |     |     |     |     |     |     |------------------
                   -------------------     -------------------
 ```
@@ -122,7 +129,7 @@ Frequency and Usage:
                   -------------------     -------------------
 ```
 
-# Current feadback
+# Current feedback
 
 - Holding keys for activating layer is tiresome and get clumsy in certain situation. Need to find a better typing flow.
     - e.g. arr[0][1][1]
