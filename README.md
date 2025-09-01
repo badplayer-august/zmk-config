@@ -22,7 +22,7 @@
 | Letters                 | high     | :white_check_mark: | :white_check_mark: | Default Layer      | 26            |
 | Control & Whitespace    | high     |                    | :white_check_mark: | Default Layer      | 6 (~INS~)     |
 | Numbers                 | high     | :white_check_mark: | :white_check_mark: | To Layer           | 10            |
-| Modifiers               | high     |                    |                    | Mod-Tap            | 8             |
+| Modifiers               | high     |                    | :white_check_mark: | Mod-Tap            | 8             |
 | Symbols / Punctuation   | medium   |                    | :white_check_mark: | Momentary Layer    | 24 (~;,./~)   |
 | Navigation              | medium   | :white_check_mark: |                    | Momentary Layer    | 8             |
 | Miscellaneous           | low      |                    | :white_check_mark: | Momentary Layer    | 1 (PSCRN)     |
@@ -39,10 +39,10 @@
 
 ```
 -------------------------------------     -------------------------------------
-|     |  Q  |  W  |  E  |  R  |  T  |     |  Y  |  U  |  I  |  O  |  P  |     |     
-| ESC |  A  |  S  |  D  |  F  |  G  |     |  H  |  J  |  K  |  L  |  ;  | DEL |     
-|     |  Z  |  X  |  C  |  V  |  B  |     |  N  |  M  |  ,  |  .  |  /  |     |     
-------------------|     | TAB |SPACE|     |ENTER|BSPC |     |------------------
+|     |  Q  |  W  |  E  |  R  |  T  |     |  Y  |  U  |  I  |  O  |  P  |     |
+|     |  A  |  S  |  D  |  F  |  G  |     |  H  |  J  |  K  |  L  |  ;  | DEL |
+|     |  Z  |  X  |  C  |  V  |  B  |     |  N  |  M  |  ,  |  .  |  /  |     |
+------------------| ESC | TAB |SPACE|     |ENTER|BSPC | DEL |------------------
                   -------------------     -------------------
 ```
 
@@ -50,9 +50,9 @@
 
 ```
 -------------------------------------     -------------------------------------
-|     |     |     |     |     |     |     |     |     |     |     |     |     |     
-|     |LALT |LMETA|LSHFT|LCTRL|     |     |     |RCTRL|RSHFT|RMETA|RALT |     |     
-|     |     |     |     |     |     |     |     |     |     |     |     |     |     
+|     |     |     |     |     |     |     |     |     |     |     |     |     |
+|     |LALT |LMETA|LSHFT|LCTRL|     |     |     |RCTRL|RSHFT|RMETA|RALT |     |
+|     |     |     |     |     |     |     |     |     |     |     |     |     |
 ------------------|     |     |     |     |     |     |     |------------------
                   -------------------     -------------------
 ```
@@ -62,9 +62,9 @@
 
 ```
 -------------------------------------     -------------------------------------
-|     |     |     |     |     |     |     |  -  |  7  |  8  |  9  |  %  |     |     
-|     |     |     |     |     |     |     |  +  |  4  |  5  |  6  |  *  |     |     
-|     |     |     |     |     |     |     |  0  |  1  |  2  |  3  |  /  |     |     
+|     |     |     |     |     |     |     |  -  |  7  |  8  |  9  |  %  |     |
+|     |     |     |     |     |     |     |  +  |  4  |  5  |  6  |  *  |     |
+|     |     |     |     |     |     |     |  0  |  1  |  2  |  3  |     |     |
 ------------------|     |     |     |     |     |     |     |------------------
                   -------------------     -------------------
 ```
@@ -90,7 +90,7 @@ Frequency and Usage:
 -------------------------------------     -------------------------------------
 |     |     |  (  |  )  |  `  |  ~  |     |  -  |  &  |  |  |  \  |  %  |     |
 |     |     |  [  |  ]  |  "  |  '  |     |  +  |  !  |  =  |  #  |  *  |     |
-|     |     |  {  |  }  |  _  |  @  |     |  ^  |  $  |     |     |     |     |     
+|     |     |  {  |  }  |  _  |  @  |     |  ^  |  $  |  ,  |  .  |     |     |
 ------------------|     |     |     |     |     |     |     |------------------
                   -------------------     -------------------
 ```
@@ -99,9 +99,9 @@ Frequency and Usage:
 
 ```
 -------------------------------------     -------------------------------------
-|     |     | F1  | F2  | F3  | F4  |     |PSCRN|KREPT| MB1 | MB2 | MB3 |     |     
-|     |     | F5  | F6  | F7  | F8  |     |LEFT |DOWN | UP  |RIGHT| MB4 |     |     
-|     |     | F9  | F10 | F11 | F12 |     |HOME |PG_DN|PG_UP| END | MB5 |     |     
+|     |     | F1  | F2  | F3  | F4  |     |PSCRN|KREPT| MB1 | MB2 | MB3 |     |
+|     |     | F5  | F6  | F7  | F8  |     |LEFT |DOWN | UP  |RIGHT| MB4 |     |
+|     |     | F9  | F10 | F11 | F12 |     |HOME |PG_DN|PG_UP| END | MB5 |     |
 ------------------|     |     |     |     |     |     |     |------------------
                   -------------------     -------------------
 ```
@@ -115,20 +115,28 @@ Frequency and Usage:
 
 ```
 -------------------------------------     -------------------------------------
-|     |     |     |     |     |     |     |     |     |     |     |     |     |     
-|     |DEV1 |DEV2 |DEV3 |DEV4 |DEV5 |     | HUI | SAI | BRI | SPI | EFF |     |     
-|     |     | ON  | OFF | BLE | USB |     | HUD | SAD | BRD | SPD |     |     |     
+|     |     |     |     |     |     |     |     |     |     |     |     |     |
+|     |DEV1 |DEV2 |DEV3 |DEV4 |DEV5 |     | HUI | SAI | BRI | SPI | EFF |     |
+|     |     | ON  | OFF | BLE | USB |     | HUD | SAD | BRD | SPD |     |     |
 ------------------|     |     |     |     |     |     |     |------------------
                   -------------------     -------------------
 ```
+
+# Current feadback
+
+- Holding keys for activating layer is tiresome and get clumsy in certain situation. Need to find a better typing flow.
+    - e.g. arr[0][1][1]
+- Need dedicated key for win or shift keys.
+- Need dedicated key for deactivate layer.
+- Tap dance keys shouldn't place on pinky finger's keys.
 
 # Template
 
 ```
 -------------------------------------     -------------------------------------
-|     |     |     |     |     |     |     |     |     |     |     |     |     |     
-|     |     |     |     |     |     |     |     |     |     |     |     |     |     
-|     |     |     |     |     |     |     |     |     |     |     |     |     |     
+|     |     |     |     |     |     |     |     |     |     |     |     |     |
+|     |     |     |     |     |     |     |     |     |     |     |     |     |
+|     |     |     |     |     |     |     |     |     |     |     |     |     |
 ------------------|     |     |     |     |     |     |     |------------------
                   -------------------     -------------------
 ```
@@ -143,3 +151,4 @@ Frequency and Usage:
 
 [Advenced setup: rafaelromao](https://github.com/rafaelromao/keyboards)
 
+[ZMK config with dongle](https://github.com/aroum/zmk-enki42-dongle)
