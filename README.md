@@ -1,3 +1,11 @@
+# Podman
+
+- start podman
+- exec command
+```bash
+podman run -it --rm --security-opt label=disable --workdir /workspaces/zmk -v "$(pwd)/zmk:/workspaces/zmk" -v "$(pwd)/zmk-config:/workspaces/zmk-config" -p 3000:3000 zmk /bin/bash
+```
+
 # Build
 
 ```bash
