@@ -9,9 +9,9 @@ podman run -it --rm --security-opt label=disable --workdir /workspaces/zmk -v "$
 # Build
 
 ```bash
-west build -d build/left -b nice_nano_v2 -- -DSHIELD=corne_left -DZMK_EXTRA_MODULES="/workspaces/zmk-config/submodules/zmk-helpers;/workspaces/zmk-config/submodules/zmk-auto-layer;/workspaces/zmk-config" -DZMK_CONFIG=/workspaces/zmk-config/config   
+west build -s app -d build/left -b nice_nano -- -DSHIELD=corne_left -DZMK_EXTRA_MODULES="/workspaces/zmk-config/submodules/zmk-helpers;/workspaces/zmk-config/submodules/zmk-auto-layer;/workspaces/zmk-config" -DZMK_CONFIG=/workspaces/zmk-config/config   
 
-west build -d build/right -b nice_nano_v2 -- -DSHIELD=corne_right -DZMK_EXTRA_MODULES="/workspaces/zmk-config/submodules/zmk-helpers;/workspaces/zmk-config/submodules/zmk-auto-layer;/workspaces/zmk-config" -DZMK_CONFIG=/workspaces/zmk-config/config   
+west build -s app -d build/right -b nice_nano -- -DSHIELD=corne_right -DZMK_EXTRA_MODULES="/workspaces/zmk-config/submodules/zmk-helpers;/workspaces/zmk-config/submodules/zmk-auto-layer;/workspaces/zmk-config" -DZMK_CONFIG=/workspaces/zmk-config/config   
 ```
 # Key Mapping
 

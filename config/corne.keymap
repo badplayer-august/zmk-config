@@ -155,6 +155,18 @@ ZMK_TAP_DANCE(n1_def,
     bindings = <&kp N1>, <&to DEF>;
 )
 
+// macro
+// ZMK_HOLD_TAP(lctl_clr,
+//     flavor = "balanced";
+//     tapping-term-ms = <200>;
+//     bindings = <&kp>, <&inner_lctl_clr>;
+// )
+// ZMK_MACRO(inner_lctl_clr,
+//     bindings=
+//         <&kp K_CANCEL>,
+//         <&kp LCTL>;
+// )
+
 // combo
 /* ZMK_COMBO(esc, &kp ESC, LH0 RH0, DEF NUM SYM, 100) */
 /* ZMK_COMBO(toggle_caplock, &kp CAPS, LH1 RH1, DEF NUM SYM, 100) */
