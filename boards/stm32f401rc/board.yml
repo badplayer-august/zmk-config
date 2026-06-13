@@ -1,0 +1,4 @@
+board:
+  name: stm32f401rc
+  socs:
+    - name: stm32f401xc

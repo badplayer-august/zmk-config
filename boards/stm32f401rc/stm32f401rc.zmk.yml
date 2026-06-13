@@ -1,0 +1,13 @@
+# This file was generated from a template. Edit it to match your keyboard.
+# See https://zmk.dev/docs/development/hardware-integration/hardware-metadata-files
+# for instructions.
+
+file_format: "1"
+id: stm32f401rc//zmk
+name: STM32F401RC
+type: board
+arch: arm
+outputs:
+  - usb
+features:
+  - keys

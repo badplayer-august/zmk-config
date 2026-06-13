@@ -1,0 +1,26 @@
+#include "borne.dtsi"
+
+#include <st/f4/stm32f401r(b-c)tx-pinctrl.dtsi>
+
+&default_transform {
+    col-offset = <7>;
+};
+
+&kscan {
+    row-gpios
+        = <&gpioa 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+        , <&gpiob 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+        , <&gpioc 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+        , <&gpiob 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+        , <&gpiob 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+        ;
+    col-gpios
+        = <&gpiob  8 GPIO_ACTIVE_HIGH>
+        , <&gpioc 10 GPIO_ACTIVE_HIGH>
+        , <&gpioc  8 GPIO_ACTIVE_HIGH>
+        , <&gpioc  7 GPIO_ACTIVE_HIGH>
+        , <&gpioc  6 GPIO_ACTIVE_HIGH>
+        , <&gpiob 15 GPIO_ACTIVE_HIGH>
+        , <&gpiob 14 GPIO_ACTIVE_HIGH>
+        ;
+};
