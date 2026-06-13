@@ -5,6 +5,8 @@
 #include <st/f4/stm32f401r(b-c)tx-pinctrl.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 
+/delete-node/ &flash0;
+
 / {
     model = "borne";
     compatible = "borne";
@@ -42,18 +44,20 @@
     };
 };
 
-&flash0 {
+&flash {
+  flash0: flash@8010000{
+    reg = < 0x8010000 0x30000 >;
+    partitions {
+      compatible = "fixed-partitions";
+      #address-cells = <1>;
+      #size-cells = <1>;
 
-	partitions {
-		compatible = "fixed-partitions";
-		#address-cells = <1>;
-		#size-cells = <1>;
-
-    code_partition: partition@10000 {
-      label = "code_partition";
-      reg = <0x00010000 0x00030000>; 
+      code_partition: partition@0 {
+        label = "code_partition";
+        reg = <0x00000000 0x00030000>; 
+      };
     };
-	};
+  };
 };
 
 &usart1 {
