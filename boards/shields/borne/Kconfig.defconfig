@@ -1,4 +1,4 @@
-if SHIELD_BORNE_LEFT
+if SHIELD_BORNE_RIGHT
 
 config ZMK_KEYBOARD_NAME
     default "borne"
@@ -6,9 +6,19 @@ config ZMK_KEYBOARD_NAME
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
 
-endif # SHIELD_BORNE_LEFT
+endif # SHIELD_BORNE_RIGHT
 
 if SHIELD_BORNE_LEFT || SHIELD_BORNE_RIGHT
+
+if BUILD_OUTPUT_UF2
+
+config BUILD_OUTPUT_UF2_USE_FLASH_BASE
+    default y
+
+config BUILD_OUTPUT_UF2_USE_FLASH_OFFSET
+    default y
+
+endif # BUILD_OUTPUT_UF2
 
 config ZMK_SPLIT
     default y

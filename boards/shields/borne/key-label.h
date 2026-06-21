@@ -48,8 +48,8 @@
 #define LM4 27
 #define LM5 26
 
-#define LBE 32  // left-middle extra
-#define RBE 33  // right-middle extra
+#define LME 32  // left-middle extra
+#define RME 33  // right-middle extra
                 //
 #define RM0 34  // right-middle row
 #define RM1 35

@@ -14,7 +14,6 @@
 
 #include "zmk-helpers/helper.h"
 #include "zmk-helpers/key-labels/42.h"
-#include "behaviors/num_word.dtsi"
 
 /*                                      42 KEY MATRIX / LAYOUT MAPPING
 
@@ -25,49 +24,92 @@
   ╰───────────╮ 36  37  38 │ 39  40  41 ╭───────────╯ ╰───────────╮ LH2 LH1 LH0 │ RH0 RH1 RH2 ╭───────────╯
               ╰────────────┴────────────╯                         ╰─────────────┴─────────────╯             */
 
-#define KEYS_L LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5  // left-hand keys
-#define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5  // right-hand keys
-#define THUMBS LH2 LH1 LH0 RH0 RH1 RH2
-
 // layers
 #define DEF 0
-#define NUM 1
-#define SYM 2
-#define NAV 3
-#define CTL 4
-#define FGT 5
+#define CAP 1
+#define NUM 2
+#define SYM 3
+#define NAV 4
+#define CTL 5
+#define FGT 6
 
+// keys
 #define ___ &trans
 #define xxx &none
 #define POWER(act) &ext_power act
 #define RGB(act) &rgb_ug act
+#define CANCEL K_CANCEL
+
+// config
+#define RELEASE_AFTER_MS      900  // release after 0.9s
+#define SLOW_TAPPING_TERM_MS  280 // for thumb
+#define FAST_TAPPING_TERM_MS  200 // for other fingre
+#define QUICK_TAP_MS          175 // repeat on tap-into-hold
+#define REQUIRE_PRIOR_IDLE_MS 250
 
 ZMK_APPLY_MATRIX_TRANSFORM(default_transform)
 
+/ {
+    behaviors {
+        num_word: num_word {
+            compatible = "zmk,behavior-auto-layer";
+            #binding-cells = <1>;
+            continue-list = <
+              BACKSPACE DELETE
+              COMMA DOT
+              MINUS PLUS
+              PERCENT HASH STAR SLASH BACKSLASH
+              EXCL EQUAL
+              AMPERSAND PIPE 
+              LPAR RPAR LBKT RBKT LBRC RBRC LT GT
+              UNDER AT
+              CARET DOLLAR
+            >;
+            ignore-numbers;
+        };
+        cap_word: cap_word {
+            compatible = "zmk,behavior-auto-layer";
+            #binding-cells = <1>;
+            continue-list = <
+              BACKSPACE DELETE
+              COMMA DOT
+              MINUS PLUS
+              PERCENT HASH STAR SLASH BACKSLASH
+              EXCL EQUAL
+              AMPERSAND PIPE 
+              LPAR RPAR LBKT RBKT LBRC RBRC LT GT
+              UNDER AT
+              CARET DOLLAR
+            >;
+            ignore-alphas;
+        };
+    };
+};
+
 // global setting
 &sk {  // sticky-key config
-    release-after-ms = <900>;  // release after 0.9s
+    release-after-ms = <RELEASE_AFTER_MS>;
     quick-release;             // no double capitalization when rolling keys
 };
 
 &sl {  // sticky-layer config
-    release-after-ms = <900>;  // release after 0.9s
+    release-after-ms = <RELEASE_AFTER_MS>;
     quick-release;             // no double capitalization when rolling keys
     ignore-modifiers;
 };
 
 &lt {  // layer-tap config
     flavor = "balanced";
-    tapping-term-ms = <200>;
-    quick-tap-ms = <175>;
+    tapping-term-ms = <FAST_TAPPING_TERM_MS>;
+    quick-tap-ms = <QUICK_TAP_MS>;
 };
 
 // timeless home mod
 ZMK_HOLD_TAP(hml,
     flavor = "balanced";
-    tapping-term-ms = <280>;
-    quick-tap-ms = <175>;                // repeat on tap-into-hold
-    require-prior-idle-ms = <250>;
+    tapping-term-ms = <SLOW_TAPPING_TERM_MS>;
+    quick-tap-ms = <QUICK_TAP_MS>;                
+    require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_R THUMBS>;
     hold-trigger-on-release;             // delay positional check until key-release
@@ -75,9 +117,9 @@ ZMK_HOLD_TAP(hml,
 
 ZMK_HOLD_TAP(hmr,
     flavor = "balanced";
-    tapping-term-ms = <280>;
-    quick-tap-ms = <175>;                // repeat on tap-into-hold
-    require-prior-idle-ms = <250>;
+    tapping-term-ms = <SLOW_TAPPING_TERM_MS>;
+    quick-tap-ms = <QUICK_TAP_MS>;                // repeat on tap-into-hold
+    require-prior-idle-ms = <REQUIRE_PRIOR_IDLE_MS>;
     bindings = <&kp>, <&kp>;
     hold-trigger-key-positions = <KEYS_L THUMBS>;
     hold-trigger-on-release;             // delay positional check until key-release
@@ -112,7 +154,7 @@ ZMK_HOLD_TAP(ctl_bt,
 
 // momentary and sticky layer
 ZMK_HOLD_TAP(msl,
-    tapping-term-ms = <200>;
+    tapping-term-ms = <FAST_TAPPING_TERM_MS>;
     bindings = <&mo>, <&sl>;
 )
 
@@ -120,29 +162,36 @@ ZMK_HOLD_TAP(msl,
 // tap sticky: symbol layer; double tap: num dance; hold: navigation layer
 ZMK_HOLD_TAP(rh2,
     flavor = "balanced";
-    tapping-term-ms = <200>;
+    tapping-term-ms = <FAST_TAPPING_TERM_MS>;
     bindings = <&mo>, <&inner_rh2>;
 )
 ZMK_TAP_DANCE(inner_rh2,
-    tapping-term-ms = <280>;
+    tapping-term-ms = <SLOW_TAPPING_TERM_MS>;
     bindings = <&sl NUM>, <&num_word NUM>;  // reverse this for sticky-num on single tap
 )
 
 // tap sticky: sticky shift; double tap: cap dance; hold: navigation layer
 ZMK_HOLD_TAP(lh2,
     flavor = "balanced";
-    tapping-term-ms = <200>;
+    tapping-term-ms = <FAST_TAPPING_TERM_MS>;
     bindings = <&mo>, <&inner_lh2>;
 )
 ZMK_TAP_DANCE(inner_lh2,
-    tapping-term-ms = <280>;
-    bindings = <&sk LSFT>, <&caps_word>;  // reverse this for sticky-num on single tap
+    tapping-term-ms = <SLOW_TAPPING_TERM_MS>;
+    bindings = <&sk LSFT>, <&cap_word CAP>;  // reverse this for sticky-num on single tap
 )
 
 // tap: backspace; shift tap: delete
 ZMK_MOD_MORPH(back_del,
     bindings = <&kp BACKSPACE>, <&kp DEL>;
     mods = <(MOD_LSFT|MOD_RSFT)>;
+)
+
+// cancel sticky layer
+ZMK_HOLD_TAP(cl,
+    flavor = "balanced";
+    tapping-term-ms = <FAST_TAPPING_TERM_MS>;
+    bindings = <&mo>, <&kp>;
 )
 
 // tap dance:
@@ -185,15 +234,27 @@ ZMK_LAYER(default_layer,
      //                                                 ╰───────────────┴───────────────┴───────────────╯   ╰───────────────┴───────────────┴───────────────╯
 )
 
+ZMK_LAYER(cap_layer,
+     // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
+          ___             &kp LS(Q)       &kp LS(W)       &kp LS(E)       &kp LS(R)       &kp LS(T)           &kp LS(Y)       &kp LS(U)       &kp LS(I)       &kp LS(O)       &kp LS(P)       ___
+     // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
+          ___             &hml LALT LS(A) &hml LGUI LS(S) &hml LSFT LS(D) &hml LCTL LS(F) &kp LS(G)           &kp LS(H)       &hmr RCTL LS(J) &hmr RSFT LS(K) &hmr RGUI LS(L) &hmr RALT SEMI  ___
+     // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
+          ___             &kp LS(Z)       &kp LS(X)       &kp LS(C)       &kp LS(V)       &kp LS(B)           &kp LS(N)       &kp LS(M)       &kp COMMA       &kp DOT         &kp SLASH       ___
+     // ╰───────────────────────────────────────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────────────────────────────────────╯
+                                                          &cl NAV CANCEL  ___             ___                 ___             ___             ___
+     //                                                 ╰───────────────┴───────────────┴───────────────╯   ╰───────────────┴───────────────┴───────────────╯
+)
+
 ZMK_LAYER(num_layer,
      // ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
           &kp TAB         xxx             &kp LPAR        &kp RPAR        &kp GRAVE       &kp TILDE           &kp MINUS       &kp N7          &kp N8          &kp N9          &kp PERCENT     ___
      // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-          &kp SPACE       &hml LALT xxx   &hml LGUI LBKT  &hml LSFT RBKT  &hml LCTL DQT   &kp SQT             &kp PLUS        &hmr RCTL N4    &hmr RSFT N5    &hmr RGUI N6    &hmr RALT STAR  &sl SYM
+          &kp SPACE       &hml LALT xxx   &hml LGUI LBKT  &hml LSFT RBKT  &hml LCTL DQT   &kp SQT             &kp PLUS        &hmr RCTL N4    &hmr RSFT N5    &hmr RGUI N6    &hmr RALT STAR  ___
      // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
           &kp COMMA       &kp DOT         &kp LBRC        &kp RBRC        &kp UNDER       &kp AT              &kp N0          &kp N1          &kp N2          &kp N3          &kp SLASH       ___
      // ╰───────────────────────────────────────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────────────────────────────────────╯
-                                                          ___             ___             ___                 ___             ___             ___
+                                                          ___             ___             ___                 ___             ___             &cl NAV CANCEL
      //                                                 ╰───────────────┴───────────────┴───────────────╯   ╰───────────────┴───────────────┴───────────────╯
 )
 
@@ -203,7 +264,7 @@ ZMK_LAYER(sym_layer,
      // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
           ___             &hml LALT xxx   &hml LGUI LBKT  &hml LSFT RBKT  &hml LCTL DQT   &kp SQT             &kp PLUS        &hmr RCTL EXCL  &hmr RSFT EQUAL &hmr RGUI HASH  &hmr RALT STAR  &kp ENTER
      // ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-          &kp LT          &kp GT          &kp LBRC        &kp RBRC        &kp UNDER       &kp AT              &kp CARET       &kp DOLLAR      &kp COMMA       &kp DOT         &kp SLASH       ___
+          &kp COMMA       &kp DOT         &kp LBRC        &kp RBRC        &kp UNDER       &kp AT              &kp CARET       &kp DOLLAR      &kp LT          &kp GT          &kp SLASH       ___
      // ╰───────────────────────────────────────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────────────────────────────────────╯
                                                           ___             ___             ___                 ___             ___             ___
      //                                                 ╰───────────────┴───────────────┴───────────────╯   ╰───────────────┴───────────────┴───────────────╯
